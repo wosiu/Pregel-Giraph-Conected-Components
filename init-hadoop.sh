@@ -23,18 +23,6 @@ then
     exit 1
 fi
 
-if [[ $USER == "m" ]]
-then
-    # just for my env    
-    export INPUT_DATA="$PROJECT_HOME/download/dblp-2011.txt"
-fi
-
-if [ -z "$INPUT_DATA" ]
-then
-    echo "set INPUT_DATA variable to point graph input file, e.g.: export INPUT_DATA=~/download/dblp-2011.txt"
-    exit 1
-fi
-
 pushd $HADOOP_HOME
     # START HADOOP
     source etc/hadoop/hadoop-env.sh
@@ -42,11 +30,6 @@ pushd $HADOOP_HOME
     sbin/start-dfs.sh
     sbin/start-all.sh
     sleep 3
-    
-    # INIT INPUT DATA
-    bin/hdfs dfs -mkdir -p /user/wos_michal/
-    # overwrites if exists    
-    bin/hdfs dfs -put -f "$INPUT_DATA" /user/wos_michal/input-dblp
 popd
 
 echo "OK"
