@@ -35,8 +35,8 @@ fi
 INPUT_HDFS="/user/wos_michal/input"
 OUTPUT_HDFS="/user/wos_michal/output"
 
-pushd $PROJECT_HOME
-    # todo compile
+pushd $PROJECT_HOME/giraph-examples
+    mvn -Phadoop_2 -Dhadoop.version=2.8.2 -DskipTests package    
 popd
 
 pushd $HADOOP_HOME
@@ -47,7 +47,7 @@ pushd $HADOOP_HOME
     bin/hdfs dfs -rm -r "$OUTPUT_HDFS" || echo "Output in $OUTPUT_HDFS"
 
     # RUN GIRAPH
-    bin/hadoop jar "$GIRAPH_HOME/giraph-examples/target/giraph-examples-1.3.0-SNAPSHOT-for-hadoop-2.8.2-jar-with-dependencies.jar" \
+    bin/hadoop jar "$PROJECT_HOME/giraph-examples/target/giraph-examples-1.3.0-SNAPSHOT-for-hadoop-2.8.2-jar-with-dependencies.jar" \
         org.apache.giraph.GiraphRunner org.apache.giraph.examples.ConnectedComponentsComputation \
         -vif org.apache.giraph.io.formats.IntIntNullTextInputFormat \
         -vip "$INPUT_HDFS" \
