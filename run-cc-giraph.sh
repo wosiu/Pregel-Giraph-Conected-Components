@@ -14,11 +14,11 @@ then
     exit 1
 fi
 
-if [ -z "$GIRAPH_HOME" ]
-then
-    echo "set GIRAPH_HOME variable to point your giraph installation, e.g.: export GIRAPH_HOME=/opt/hadoop/giraph"
-    exit 1
-fi
+#if [ -z "$GIRAPH_HOME" ]
+#then
+#    echo "set GIRAPH_HOME variable to point your giraph installation, e.g.: export GIRAPH_HOME=/opt/hadoop/giraph"
+#    exit 1
+#fi
 
 if [[ $USER == "m" ]]
 then
