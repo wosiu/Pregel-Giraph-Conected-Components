@@ -36,7 +36,7 @@ INPUT_HDFS="/user/wos_michal/input"
 OUTPUT_HDFS="/user/wos_michal/output"
 
 pushd $PROJECT_HOME/giraph-examples
-    mvn -Phadoop_2 -Dhadoop.version=2.8.2 -DskipTests package    
+    mvn -Phadoop_2 -Dhadoop.version=2.8.2 -DskipTests package || { echo "Error while building"; exit 1; }
 popd
 
 pushd $HADOOP_HOME
@@ -48,7 +48,7 @@ pushd $HADOOP_HOME
 
     # RUN GIRAPH
     bin/hadoop jar "$PROJECT_HOME/giraph-examples/target/giraph-examples-1.3.0-SNAPSHOT-for-hadoop-2.8.2-jar-with-dependencies.jar" \
-        org.apache.giraph.GiraphRunner org.apache.giraph.examples.ConnectedComponentsComputation \
+        org.apache.giraph.GiraphRunner org.apache.giraph.examples.ConnectedComponentsSinglePivot \
         -vif org.apache.giraph.io.formats.IntIntNullTextInputFormat \
         -vip "$INPUT_HDFS" \
         -vof org.apache.giraph.io.formats.IdWithValueTextOutputFormat \
