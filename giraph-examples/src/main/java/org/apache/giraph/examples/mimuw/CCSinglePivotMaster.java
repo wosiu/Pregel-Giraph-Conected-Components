@@ -45,13 +45,15 @@ public class CCSinglePivotMaster extends DefaultMasterCompute {
     @Override
     public void initialize() throws InstantiationException, IllegalAccessException {
         registerPersistentAggregator(PHASE, IntOverwriteAggregator.class);
-        registerAggregator(MAX_DEG_VERTEX, PairIntMaxAggregator.class);
+        registerPersistentAggregator(MAX_DEG_VERTEX, PairIntMaxAggregator.class);
         registerPersistentAggregator(PIVOT_ACTIVE, BooleanOrAggregator.class);
     }
 
     @Override
     public void compute() {
         LOG.info("Superstep " + getSuperstep());
+        LOG.info(getPhase().toString() + " phase active");
+
         if (getSuperstep() == 0) {
             LOG.info("Set phase FIND_PIVOT");
             setPhase(Phases.FIND_PIVOT);
