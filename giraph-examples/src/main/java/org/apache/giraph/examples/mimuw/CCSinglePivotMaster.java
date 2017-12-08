@@ -94,8 +94,6 @@ public class CCSinglePivotMaster extends DefaultMasterCompute {
             setPhase(Phases.NORMAL);
             return;
         }
-
-        LOG.info(getPhase().toString() + " phase active");
     }
 
     /**
@@ -104,7 +102,6 @@ public class CCSinglePivotMaster extends DefaultMasterCompute {
      * @param phase Next phase.
      */
     private void setPhase(Phases phase) {
-        LOG.info("Set ordinal " + phase.ordinal());
         setAggregatedValue(PHASE, new IntWritable(phase.ordinal()));
     }
 
@@ -115,7 +112,6 @@ public class CCSinglePivotMaster extends DefaultMasterCompute {
      */
     private Phases getPhase() {
         IntWritable phaseInt = getAggregatedValue(PHASE);
-        LOG.info("getPhase aggregated value " + phaseInt.get());
         return getPhase(phaseInt);
     }
 

@@ -3,3 +3,28 @@ Opis rozwiązania:
 Uwaga: wersja Girapha jaką uzywaliśmy na labach była wersją rozwojową (1.3-snapshot), w swoim rozwiązaniu użyłem wersji stabilnej 1.2.
 
 
+
+Porównanie statystyk
+CC z Single Pivot:
+Giraph Stats
+		Aggregate sent message bytes=52771827
+		Aggregate sent messages=6596119
+		Aggregate vertices=986324
+		Superstep=23
+Total (ms)=91130
+
+w tym 14 superstepow propagate pivot
+oraz 7 superstepow normalnych
+
+Bez Single Pivot:
+
+
+
+
+komendy pomocnicze:
+
+obliczenie ilosci spojnych skladowych:
+$HADOOP_HOME/bin/hdfs dfs -cat /user/wos_michal/output/part* 2>/dev/null | cut -f2 | sort | uniq | wc -l
+
+logi: 
+grep "mimuw.CCSinglePivotMaster" run.log

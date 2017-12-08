@@ -47,6 +47,8 @@ public class CCSinglePivot extends
     public void preSuperstep() {
         IntWritable phaseInt = getAggregatedValue(PHASE);
         currPhase = CCSinglePivotMaster.getPhase(phaseInt);
+        // doesn't work without this line
+        aggregate(PHASE, new IntWritable(phaseInt.get()));
     }
 
     @Override
