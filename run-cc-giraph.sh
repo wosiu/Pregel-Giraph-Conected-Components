@@ -36,7 +36,7 @@ INPUT_HDFS="/user/wos_michal/input"
 OUTPUT_HDFS="/user/wos_michal/output"
 
 pushd $PROJECT_HOME/giraph-examples
-    mvn -Phadoop_2 -Dhadoop.version=2.8.2 -DskipTests package || { echo "Error while building"; exit 1; }
+    mvn -Phadoop_2 -Dhadoop.version=2.8.2 -DskipTests clean package || { echo "Error while building"; exit 1; }
 popd
 
 pushd $HADOOP_HOME

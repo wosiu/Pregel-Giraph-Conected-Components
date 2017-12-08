@@ -20,6 +20,7 @@ package org.apache.giraph.examples.mimuw;
 import org.apache.giraph.aggregators.BooleanOrAggregator;
 import org.apache.giraph.aggregators.IntOverwriteAggregator;
 import org.apache.giraph.master.DefaultMasterCompute;
+import org.apache.giraph.writable.tuple.PairWritable;
 import org.apache.hadoop.io.BooleanWritable;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.log4j.Logger;
@@ -53,6 +54,8 @@ public class CCSinglePivotMaster extends DefaultMasterCompute {
     public void compute() {
         LOG.info("Superstep " + getSuperstep());
         LOG.info(getPhase().toString() + " phase active");
+        PairWritable<IntWritable, IntWritable> pair = getAggregatedValue(MAX_DEG_VERTEX);
+        LOG.info("Pivot vertex " + pair.getRight().get() + " deg " + pair.getLeft().get());
 
         if (getSuperstep() == 0) {
             LOG.info("Set phase FIND_PIVOT");
@@ -101,6 +104,7 @@ public class CCSinglePivotMaster extends DefaultMasterCompute {
      * @param phase Next phase.
      */
     private void setPhase(Phases phase) {
+        LOG.info("Set ordinal " + phase.ordinal());
         setAggregatedValue(PHASE, new IntWritable(phase.ordinal()));
     }
 
@@ -111,6 +115,7 @@ public class CCSinglePivotMaster extends DefaultMasterCompute {
      */
     private Phases getPhase() {
         IntWritable phaseInt = getAggregatedValue(PHASE);
+        LOG.info("getPhase aggregated value " + phaseInt.get());
         return getPhase(phaseInt);
     }
 
