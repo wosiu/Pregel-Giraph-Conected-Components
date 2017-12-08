@@ -46,9 +46,14 @@ pushd $HADOOP_HOME
     bin/hdfs dfs -put -f "$INPUT_DATA" "$INPUT_HDFS"
     bin/hdfs dfs -rm -r "$OUTPUT_HDFS" || echo "Output in $OUTPUT_HDFS"
 
+    #bin/hadoop jar "$PROJECT_HOME/giraph-examples/target/giraph-examples-1.3.0-SNAPSHOT-for-hadoop-2.8.2-jar-with-dependencies.jar" \
+    #    org.apache.giraph.GiraphRunner -h
+    #exit 0    
+
     # RUN GIRAPH
     bin/hadoop jar "$PROJECT_HOME/giraph-examples/target/giraph-examples-1.3.0-SNAPSHOT-for-hadoop-2.8.2-jar-with-dependencies.jar" \
-        org.apache.giraph.GiraphRunner org.apache.giraph.examples.ConnectedComponentsSinglePivot \
+        org.apache.giraph.GiraphRunner org.apache.giraph.examples.mimuw.CCSinglePivot \
+        -mc org.apache.giraph.examples.mimuw.CCSinglePivotMaster \
         -vif org.apache.giraph.io.formats.IntIntNullTextInputFormat \
         -vip "$INPUT_HDFS" \
         -vof org.apache.giraph.io.formats.IdWithValueTextOutputFormat \
