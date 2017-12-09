@@ -1,8 +1,7 @@
 Uruchamianie:
     export HADOOP_HOME=...
     ./init-hadoop.sh
-    ./run-cc-giraph.sh
-
+    ./run-cc-giraph.sh sciezka/lokalna/do/pliku/wejsciowego/z/grafem
 
 Opis rozwiązania:
 
@@ -37,15 +36,21 @@ Porównanie statystyk na grafie dblp-2011:
         UWAGA: w tym 14 superstepow propagate pivot
         oraz 7 superstepow normalnych
 
-    CC bez Single Pivot (orginalny z exampli apache: org.apache.giraph.examples.original.ConnectedComponentsComputation):
+    CC bez Single Pivot (orginalny z exampli apache: 
+    org.apache.giraph.examples.original.ConnectedComponentsComputation):
+		Aggregate sent message bytes=235709651
+		Aggregate sent messages=29462272
+		Aggregate vertices=986324
+		Superstep=15
+		ACVERAGE Total (ms)= ( 88895 + 89002 + 90137) / 3 = 89345
 
 
 Konkluzja: 
 
-    Optymalizacja oparta na heurystyce Single Pivot zmniejsza komunikację. 
-    Minusem jest zwiększona ilość superstepów. Na ten problem możnaby 
-    próbować zaradzić stosując górny limit superstepów 
-    na fazę propagowania pivota - moje rozwiązanie nie uwzględnia tego pomysłu.
+    Optymalizacja oparta na heurystyce Single Pivot zmniejsza ponad >> 4 krotnie << komunikację. 
+    Minusem jest zwiększona ilość superstepów, choć ostateczne czasy dzialania nie różnią się znacznie. 
+    Na problem zwiększonej ilości supestepów możnaby próbować zaradzić stosując górny limit 
+    superstepów na fazę propagowania pivota - moje rozwiązanie nie uwzględnia tego pomysłu.
 
 
 Notatki własne - komendy pomocnicze:
