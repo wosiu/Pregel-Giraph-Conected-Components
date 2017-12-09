@@ -61,7 +61,7 @@ public class CCSinglePivot extends
             case FIND_PIVOT:
                 // find vertex with max deg as a candidate for pivot
                 IntWritable deg = new IntWritable(vertex.getNumEdges());
-                aggregate(MAX_DEG_VERTEX, new PairWritable(deg, vertex.getValue()));
+                aggregate(MAX_DEG_VERTEX, new PairWritable(deg, new IntWritable(currentComponent)));
                 break;
             case INIT_PIVOT:
                 PairWritable<IntWritable, IntWritable> pair = getAggregatedValue(MAX_DEG_VERTEX);

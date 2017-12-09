@@ -25,8 +25,8 @@ public class PairIntMaxAggregator extends BasicAggregator<PairWritable<IntWritab
 
     @Override
     public PairWritable<IntWritable, IntWritable> createInitialValue() {
-        IntWritable minusInf = new IntWritable(Integer.MIN_VALUE);
-        return new PairWritable(minusInf, minusInf);
+        return new PairWritable(new IntWritable(Integer.MIN_VALUE),
+                                new IntWritable(Integer.MIN_VALUE));
     }
 }
 
