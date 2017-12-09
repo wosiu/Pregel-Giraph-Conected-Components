@@ -36,7 +36,7 @@ $HADOOP_HOME/bin/hdfs dfs -put -f "$INPUT_DATA" "$INPUT_HDFS" || { echo "Error w
 $HADOOP_HOME/bin/hdfs dfs -rm -r "$OUTPUT_HDFS" || echo "Target output $OUTPUT_HDFS clear"
 
 # RUN GIRAPH
-$HADOOP_HOME/bin/hadoop jar "$PROJECT_HOME/giraph-examples/target/giraph-examples-1.3.0-SNAPSHOT-for-hadoop-2.8.2-jar-with-dependencies.jar" \
+$HADOOP_HOME/bin/hadoop jar "$PROJECT_HOME/giraph-examples/target/giraph-mimuw-examples-1.2.0-hadoop-2.8.2-jar-with-dependencies.jar" \
     org.apache.giraph.GiraphRunner org.apache.giraph.examples.mimuw.CCSinglePivot \
     -mc org.apache.giraph.examples.mimuw.CCSinglePivotMaster \
     -vif org.apache.giraph.io.formats.IntIntNullTextInputFormat \
@@ -45,7 +45,8 @@ $HADOOP_HOME/bin/hadoop jar "$PROJECT_HOME/giraph-examples/target/giraph-example
     -op "$OUTPUT_HDFS" \
     -w 1 \
     -ca giraph.SplitMasterWorker=false \
-|& tee $PROJECT_HOME/run.log || { echo "Giraph error"; exit 1; }
+    || { echo "Giraph error"; exit 1; } \
+    |& tee $PROJECT_HOME/run.log
 
 echo "OK"
 echo "Check result: $HADOOP_HOME/bin/hdfs dfs -cat $OUTPUT_HDFS/part*"

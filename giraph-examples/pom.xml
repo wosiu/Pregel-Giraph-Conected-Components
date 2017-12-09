@@ -24,22 +24,23 @@ under the License.
   <parent>
     <groupId>org.apache.giraph</groupId>
     <artifactId>giraph-parent</artifactId>
-    <version>1.3.0-SNAPSHOT</version>
+    <version>1.2.0</version>
   </parent>
-  <artifactId>giraph-examples</artifactId>
+  <artifactId>giraph-mimuw-examples</artifactId>
   <packaging>jar</packaging>
 
-  <name>Apache Giraph Examples</name>
+  <name>Apache Giraph Examples - MIMUW edit</name>
   <url>http://giraph.apache.org/giraph-examples/</url>
   <description>Giraph examples (for learning and testing)</description>
 
   <properties>
     <export-target.dir>export/target</export-target.dir>
     <top.dir>${project.basedir}/..</top.dir>
+    <forHadoop>hadoop-2.8.2</forHadoop>
   </properties>
 
   <build>
-    <finalName>giraph-examples-${project.version}-${forHadoop}</finalName>    
+    <finalName>giraph-mimuw-examples-${project.version}-${forHadoop}</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -80,7 +81,7 @@ under the License.
           <systemProperties>
             <property>
               <name>prop.jarLocation</name>
-              <value>${project.basedir}/target/giraph-examples-${project.version}-${forHadoop}-jar-with-dependencies.jar</value>
+              <value>${project.basedir}/target/giraph-mimuw-examples-${project.version}-${forHadoop}-jar-with-dependencies.jar</value>
             </property>
           </systemProperties>
         </configuration>
