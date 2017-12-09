@@ -20,6 +20,7 @@ Opis rozwiązania:
        3) normalny algorytm CC na pozostalych wierzcholkach - wysyłaj sąsiadom 
           wierzchołem o najniższym id dotąd widziany
 
+       Kod java: giraph-cc/src/main/java/org/apache/giraph/examples/mimuw
        Kolejne fazy zarzadzane są przez zaimplementowanego Mastera, 
        wspomaganego kolejnymi dwoma agregatorami.
 
