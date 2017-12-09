@@ -21,6 +21,7 @@ package org.apache.giraph.examples;
 import org.apache.giraph.combiner.MinimumIntMessageCombiner;
 import org.apache.giraph.conf.GiraphConfiguration;
 import org.apache.giraph.edge.ByteArrayEdges;
+import org.apache.giraph.examples.original.ConnectedComponentsComputation;
 import org.apache.giraph.io.formats.IdWithValueTextOutputFormat;
 import org.apache.giraph.io.formats.IntIntNullTextInputFormat;
 import org.apache.giraph.utils.InternalVertexRunner;

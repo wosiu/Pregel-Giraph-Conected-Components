@@ -32,19 +32,19 @@ Porównanie statystyk na grafie dblp-2011:
 		Aggregate sent messages=6596119
 		Aggregate vertices=986324
 		Superstep=23
-        Total (ms)=91130
+        AVERAGE Total (ms) = (91130 + 90911 + 91814) / 3 = 91285
 
         UWAGA: w tym 14 superstepow propagate pivot
         oraz 7 superstepow normalnych
 
-    CC bez Single Pivot
+    CC bez Single Pivot (orginalny z exampli apache: org.apache.giraph.examples.original.ConnectedComponentsComputation):
 
 
 Konkluzja: 
 
     Optymalizacja oparta na heurystyce Single Pivot zmniejsza komunikację. 
     Minusem jest zwiększona ilość superstepów. Na ten problem możnaby 
-    zaradzić pomysł proponowany w pracy stosując górny limit superstepów 
+    próbować zaradzić stosując górny limit superstepów 
     na fazę propagowania pivota - moje rozwiązanie nie uwzględnia tego pomysłu.
 
 

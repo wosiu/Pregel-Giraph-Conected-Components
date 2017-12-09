@@ -16,8 +16,9 @@
  * limitations under the License.
  */
 
-package org.apache.giraph.examples;
+package org.apache.giraph.examples.original;
 
+import org.apache.giraph.examples.Algorithm;
 import org.apache.giraph.graph.BasicComputation;
 import org.apache.giraph.edge.Edge;
 import org.apache.giraph.graph.Vertex;

@@ -21,6 +21,7 @@ package org.apache.giraph.examples;
 import org.apache.giraph.combiner.MinimumIntMessageCombiner;
 import org.apache.giraph.conf.GiraphConfiguration;
 import org.apache.giraph.edge.ByteArrayEdges;
+import org.apache.giraph.examples.original.ConnectedComponentsComputation;
 import org.apache.giraph.graph.Vertex;
 import org.apache.giraph.utils.InternalVertexRunner;
 import org.apache.giraph.utils.TestGraph;
