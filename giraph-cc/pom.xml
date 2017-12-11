@@ -383,7 +383,7 @@ under the License.
 
   <dependencies>
     <!-- compile dependencies. sorted lexicographically. -->
-    <dependency>
+    <!--dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
     </dependency>
@@ -398,42 +398,37 @@ under the License.
     <dependency>
     	<groupId>it.unimi.dsi</groupId>
     	<artifactId>fastutil</artifactId>
-    </dependency>
+    </dependency-->
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
     </dependency>
-    <dependency>
+    <!--dependency>
       <groupId>org.apache.zookeeper</groupId>
       <artifactId>zookeeper</artifactId>
     </dependency>
     <dependency>
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.giraph</groupId>
-      <artifactId>giraph-core</artifactId>
-      <version>1.2.0-hadoop2</version>
-    </dependency>
-    <!--dependency>
-      <groupId>org.apache.giraph</groupId>
-      <artifactId>giraph-core</artifactId>
-      <version>1.3.0-SNAPSHOT</version>
-      <type>test-jar</type>
     </dependency-->
     <dependency>
       <groupId>org.apache.giraph</groupId>
-      <artifactId>giraph-block-app</artifactId>
+      <artifactId>giraph-core</artifactId>
       <version>1.2.0-hadoop2</version>
     </dependency>
 
+    <!--dependency>
+      <groupId>org.apache.giraph</groupId>
+      <artifactId>giraph-block-app</artifactId>
+      <version>1.2.0-hadoop2</version>
+    </dependency-->
+
     <!-- runtime dependency -->
-    <dependency>
+    <!--dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
       <scope>runtime</scope>
-    </dependency>
+    </dependency-->
 
     <!-- test dependencies. sorted lexicographically. -->
     <dependency>
