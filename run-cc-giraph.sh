@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# stop on any error
-set -e
 
 pushd `dirname $0` > /dev/null
 PROJECT_HOME=`pwd -P`
@@ -25,9 +23,11 @@ fi
 INPUT_HDFS="/user/wos_michal/input"
 OUTPUT_HDFS="/user/wos_michal/output"
 
+HADOOP_VERSION=2.8.2
+
 pushd $PROJECT_HOME/giraph-cc
     export MAVEN_OPTS='-Xms384M -Xmx512M -XX:MaxPermSize=256M'
-    mvn -Phadoop_2 -Dhadoop.version=2.8.2 -DskipTests clean package || { echo "Error while building"; exit 1; }
+    mvn -Phadoop_2 -Dhadoop.version=$HADOOP_VERSION -DskipTests clean package || { echo "Error while building"; exit 1; }
 popd
 
 #INIT DATA    
@@ -36,8 +36,9 @@ $HADOOP_HOME/bin/hdfs dfs -mkdir -p /user/wos_michal/ || { echo "Error while cre
 $HADOOP_HOME/bin/hdfs dfs -put -f "$INPUT_DATA" "$INPUT_HDFS" || { echo "Error while moving data to hdfs"; exit 1; }
 $HADOOP_HOME/bin/hdfs dfs -rm -r "$OUTPUT_HDFS" || echo "Target output $OUTPUT_HDFS clear"
 
+
 # RUN GIRAPH
-$HADOOP_HOME/bin/hadoop jar "$PROJECT_HOME/giraph-cc/target/giraph-mimuw-examples-1.2.0-hadoop-2.8.2-jar-with-dependencies.jar" \
+$HADOOP_HOME/bin/hadoop jar "$PROJECT_HOME/giraph-cc/target/giraph-mimuw-examples-1.2.0-hadoop-${HADOOP_VERSION}-jar-with-dependencies.jar" \
     org.apache.giraph.GiraphRunner org.apache.giraph.examples.mimuw.CCSinglePivot \
     -mc org.apache.giraph.examples.mimuw.CCSinglePivotMaster \
     -vif org.apache.giraph.io.formats.IntIntNullTextInputFormat \

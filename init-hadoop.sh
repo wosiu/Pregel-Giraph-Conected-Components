@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # stop on any error
-set -e
 
 pushd `dirname $0` > /dev/null
 PROJECT_HOME=`pwd -P`
@@ -25,10 +24,10 @@ fi
 
 pushd $HADOOP_HOME
     # START HADOOP
-    source etc/hadoop/hadoop-env.sh
+    source etc/hadoop/hadoop-env.sh || { echo "Cannot source hadoop-env. Check your hadoop path"; exit 1; }
     # bin/hdfs namenode -format
-    sbin/start-dfs.sh
-    sbin/start-all.sh
+    sbin/start-dfs.sh  || { echo "Cannot start DFS. Fix your hadoop installation."; exit 1; }
+    sbin/start-all.sh  || { echo "Cannot start hadoop services. Fix your hadoop installation."; exit 1; }
     sleep 3
 popd
 
